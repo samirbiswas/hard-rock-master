@@ -59,18 +59,28 @@ result.addEventListener('click',e=>{
 });
 
 async function getLyrices(artist,songTitle){
+
    const res = await fetch(`https://api.lyrics.ovh/v1/${artist}/${songTitle}`);
    const data = await res.json();
-
- 
-   const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
    
-   result.innerHTML=`<h2> <strong>
+   if(data.lyrics === undefined)
+   {
+
+    confirm("Lyrics Not Found");
+
+   }
+   else
+   { 
+       const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
+ 
+                result.innerHTML=`<h2> <strong>
                 ${songTitle}
                 </strong> By ${artist}
                 </h2>
                 <span>${lyrics}</span>
+
                 `
+    }
                     
 }
   
