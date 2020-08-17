@@ -61,6 +61,7 @@ result.addEventListener('click',e=>{
 async function getLyrices(artist,songTitle){
    const res = await fetch(`https://api.lyrics.ovh/v1/${artist}/${songTitle}`);
    const data = await res.json();
+
  
    const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
    
@@ -70,7 +71,7 @@ async function getLyrices(artist,songTitle){
                 </h2>
                 <span>${lyrics}</span>
                 `
-                .catch(Error => alert('Wrong city name!'))     
+                    
 }
   
 
